@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any // The main pipeline runs on the default Jenkins agent
 
     stages {
         stage('Checkout') {
@@ -8,14 +8,15 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
+            // For this stage, switch to an agent that has Docker tools
+            agent {
+                docker { image 'docker:24.0' }
+            }
             steps {
-                script {
-                    // Navigate into the backend project folder
-                    dir('api') {
-                        echo 'Building the Docker image...'
-                        // Run the docker build command
-                        sh 'docker build -t communityconnect-api .'
-                    }
+                // Jenkins will now run these commands inside the docker:24.0 container
+                dir('api') {
+                    echo 'Building the Docker image...'
+                    sh 'docker build -t communityconnect-api .'
                 }
             }
         }
