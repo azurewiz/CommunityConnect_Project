@@ -1,0 +1,10 @@
+# Start from the official, up-to-date Jenkins LTS image with JDK 21
+FROM jenkins/jenkins:lts-jdk21
+
+# Switch to the root user to install software
+USER root
+
+# Install the Docker client inside the image
+RUN apt-get update && apt-get install -y docker.io
+
+# By not switching the user back, Jenkins will now run as root
