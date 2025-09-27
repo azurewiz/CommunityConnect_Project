@@ -1,0 +1,21 @@
+# Compiled Java files
+/api/target/
+/api/pom.xml.tag
+/api/pom.xml.releaseBackup
+/api/pom.xml.versionsBackup
+/api/release.properties
+
+# IDE files
+.idea/
+*.iml
+*.iws
+
+# Node dependencies
+/community-connect-ui/node_modules/
+/community-connect-ui/build/
+
+# Log files
+*.log
+
+# Don't commit secrets!
+/api/src/main/resources/application.properties
