@@ -4,14 +4,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // This step checks out the code from your GitHub repository
                 checkout scm
             }
         }
-        stage('Verify Connection') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    echo 'SUCCESS: Jenkins is connected and can read the Jenkinsfile!'
+                    // Navigate into the backend project folder
+                    dir('api') {
+                        echo 'Building the Docker image...'
+                        // Run the docker build command
+                        sh 'docker build -t communityconnect-api .'
+                    }
                 }
             }
         }
