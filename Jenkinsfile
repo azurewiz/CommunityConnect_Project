@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git 'https://github.com/azurewiz/CommunityConnect_Project.git'
             }
         }
         stage('Build Docker Image') {
